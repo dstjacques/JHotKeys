@@ -39,7 +39,14 @@ public class UnixHotKeyController implements JHotKeyController
       // Use JXGrabKey library
       try
       {
-         System.load(new File(libPath + System.getProperty("file.separator") + "unix/lib/libJXGrabKey.so").getCanonicalPath());
+         if((System.getProperty("os.arch")).contains("64"))
+         {
+            System.load(new File(libPath + System.getProperty("file.separator") + "unix/lib64/libJXGrabKey.so").getCanonicalPath());
+         }
+         else
+         {
+            System.load(new File(libPath + System.getProperty("file.separator") + "unix/lib/libJXGrabKey.so").getCanonicalPath());
+         }
          JXGrabKey.getInstance();
       }
       catch(Exception e)
